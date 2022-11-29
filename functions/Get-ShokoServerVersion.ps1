@@ -17,6 +17,5 @@ function Get-ShokoServerVersion {
         apikey="$global:ShokoApiKey"
     }
     Assert-ShokoConfigImported
-    $result = (Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/Init/Version -ContentType "application/json")
-    $result
+    Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/Init/Version -ContentType "application/json"
 }

@@ -55,14 +55,12 @@ function Get-ShokoFileInfo {
     Assert-ShokoConfigImported
 
     if ($ByID) {
-        $result = (Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/File/$FileID`?includeXRefs`=$includeXRefs`&$includeDataFromAniDB`=$includeDataFromAniDB -Headers $headers -ContentType "application/json")
-        $result
+        Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/File/$FileID`?includeXRefs`=$includeXRefs`&$includeDataFromAniDB`=$includeDataFromAniDB -Headers $headers -ContentType "application/json"
     }
 
     elseif ($ByPath) {
         $PathEndsWith = [uri]::EscapeUriString($pathEndsWith)
         Write-Verbose $PathEndsWith
-        $result = (Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/File/PathEndsWith/$PathEndsWith -Headers $headers -ContentType "application/json")
-        $result
+        Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/File/PathEndsWith/$PathEndsWith -Headers $headers -ContentType "application/json"
     }
 }

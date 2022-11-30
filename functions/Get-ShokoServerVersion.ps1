@@ -14,5 +14,6 @@ function Get-ShokoServerVersion {
     Param()
 
     Assert-ShokoConfigImported
+    
     Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/Init/Version -ContentType "application/json"
 }

@@ -10,7 +10,9 @@ function Revoke-ShokoApiKey {
         .EXAMPLE
         Revoke-ShokoApiKey
     #>
+
     Assert-ShokoConfigImported
+    
     Invoke-RestMethod -Method Delete -Uri $global:ShokoURI/api/auth?apikey=$global:ShokoApiKey
     $ShokoApiKey = $null
     Set-ShokoConfig -ApiKey "revoked"

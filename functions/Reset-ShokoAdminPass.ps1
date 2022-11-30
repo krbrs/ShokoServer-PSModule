@@ -21,8 +21,9 @@ function Reset-ShokoAdminPass {
         [switch]$IamAwareThisIsPotentiallyDestructiveAndWantToContinue
     )
 
+    Assert-ShokoConfigImported
+
     if ($IamAwareThisIsPotentiallyDestructiveAndWantToContinue) {
-        Assert-ShokoConfigImported
         Invoke-RestMethod -Method Post -Uri $global:ShokoURI/v1/User/ChangePassword/1 -Body (@{ newPassword = ""} | ConvertTo-Json) -ContentType "application/json"
         $global:ShokoApiKey=$null
         Set-ShokoConfig -ApiKey "revoked"

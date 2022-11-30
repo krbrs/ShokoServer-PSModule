@@ -13,9 +13,11 @@ function Get-ShokoServerSettings {
     [CmdletBinding()]
     Param()
 
+    Assert-ShokoConfigImported
+
     $headers = @{
         apikey="$global:ShokoApiKey"
     }
-    Assert-ShokoConfigImported
+    
     Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/Settings -Headers $headers -ContentType "application/json"
 }

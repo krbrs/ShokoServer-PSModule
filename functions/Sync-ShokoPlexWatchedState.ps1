@@ -11,10 +11,13 @@ function Sync-ShokoPlexWatchedState {
         .EXAMPLE
         Sync-ShokoPlexWatchedState
     #>
+    
+    Assert-ShokoConfigImported
+    
     $headers = @{
         apikey="$global:ShokoApiKey"
     }
-    Assert-ShokoConfigImported
+    
     Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/Action/PlexSyncAll -Headers $headers -ContentType "application/json"
     Write-Host "Sync triggered. Please check docker or WebUI logs for progress."
 }

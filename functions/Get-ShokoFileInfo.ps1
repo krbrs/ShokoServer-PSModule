@@ -48,11 +48,11 @@ function Get-ShokoFileInfo {
         $includeDataFromAniDB
     )
 
+    Assert-ShokoConfigImported
+
     $headers = @{
         apikey="$global:ShokoApiKey"
     }
-
-    Assert-ShokoConfigImported
 
     if ($ByID) {
         Invoke-RestMethod -Method GET -Uri $global:ShokoURI/api/v3/File/$FileID`?includeXRefs`=$includeXRefs`&$includeDataFromAniDB`=$includeDataFromAniDB -Headers $headers -ContentType "application/json"

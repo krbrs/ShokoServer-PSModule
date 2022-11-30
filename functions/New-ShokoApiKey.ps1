@@ -14,7 +14,9 @@ function New-ShokoApiKey {
     param (
         [pscredential] $ShokoCredentials = (Get-Credential -Message "Please enter your Shoko credentials:")
     )
+
     Assert-ShokoConfigImported
+    
     $ShokoUser = $ShokoCredentials.GetNetworkCredential().UserName
     $ShokoPass = $ShokoCredentials.GetNetworkCredential().Password
     $response = (Invoke-RestMethod -Method Post -Uri $global:ShokoURI/api/auth -Body (@{ user = "$ShokoUser"; pass ="$ShokoPass"; device = "ShokoServer-PSModule"} | ConvertTo-Json) -ContentType "application/json")
